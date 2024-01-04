@@ -17,3 +17,29 @@ int main(){
     cout << "\nMin = " << B[5];
     return 0;
 }
+
+void stat(const double A[],int N,double B[]){
+    double Arithmetic = 0, StandardDev = 0, Geometric = 1 , Areverse = 0, Max = A[0], Min = A[0];
+    for(int i = 0; i < N ; i++){
+        Arithmetic = Arithmetic + A[i];
+        Geometric = Geometric * A[i];
+        Areverse = Areverse + (1/A[i]);
+    }
+    for(int i = 0; i < N ; i++){
+        if(Max < A[i]){
+            Max = A[i];
+        }
+        if(Min > A[i]){
+            Min = A[i];
+        }
+    }
+    for(int i = 0; i < N ; i++){
+        StandardDev = StandardDev + pow(A[i]-(Arithmetic/N),2);
+    }
+    B[0] = Arithmetic/N;
+    B[1] = sqrt(StandardDev/N);
+    B[2] = pow(Geometric,1.0/N);
+    B[3] = 1/(Areverse/N);
+    B[4] = Max;
+    B[5] = Min;
+}
